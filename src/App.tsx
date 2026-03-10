@@ -61,11 +61,7 @@ const LESSONS: Record<ScenarioId, string> = {
   sofia: "A connected European grid turns renewable surges into shared energy, not instability.",
 };
 
-const EU_FLOWS: Record<ScenarioId, string[]> = {
-  marta: ["Austria → Hungary", "Slovakia → Hungary", "Romania → Hungary", "Croatia → Hungary"],
-  luca:  ["France → Italy", "Switzerland → Italy", "Slovenia → Italy", "Austria → Italy"],
-  sofia: ["Sweden → Germany", "Sweden → Denmark", "Sweden → Finland", "Sweden → Poland"],
-};
+
 
 function reframe(id: ScenarioId): Step {
   const titles: Record<ScenarioId,string> = { marta:"Now try again — but not alone.", luca:"Now try again — with a connected European grid.", sofia:"Now try again — with a connected European grid." };
@@ -366,12 +362,7 @@ const COUNTRY_SHAPES: Record<ScenarioId, { direction:"in"|"out"; countries: Coun
   },
 };
 
-// Connection endpoint: find approximate border midpoint between two countries
-function getConnectionPoint(countries: CountryShape[], id: string): { x: number; y: number } {
-  const c = countries.find(c => c.id === id);
-  if (!c) return { x: 0, y: 0 };
-  return { x: c.labelX, y: c.labelY };
-}
+
 
 function EuFlowDiagram({ scenarioId }: { scenarioId: ScenarioId }) {
   const cfg = COUNTRY_SHAPES[scenarioId];
@@ -435,7 +426,7 @@ function EuFlowDiagram({ scenarioId }: { scenarioId: ScenarioId }) {
           ))}
 
           {/* ── NEIGHBOUR COUNTRIES (drawn before center so center is on top) ── */}
-          {cfg.countries.filter(c => !c.isCenter).map((country, i) => {
+          {cfg.countries.filter(c => !c.isCenter).map((country) => {
             const nbVisible = phase >= 3;
             return (
               <g key={country.id}>
@@ -515,15 +506,13 @@ function EuFlowDiagram({ scenarioId }: { scenarioId: ScenarioId }) {
                 <path id={pathId} d={d} fill="none" stroke="none"/>
                 {/* Directional arrow tip near center */}
                 {lineVisible && (() => {
-                  // Arrow at 80% along path toward center
-                  const t = 0.8;
-                  const ax = fx + (tx-fx)*t + (mx-fx-(tx-fx)*0.5)*(1-(1-t)*(1-t)-t*t)*0;
-                  const arrowX = fx*(1-t)*(1-t) + 2*mx*(1-t)*t + tx*t*t;
-                  const arrowY = fy*(1-t)*(1-t) + 2*my*(1-t)*t + ty*t*t;
-                  return (
-                    <circle cx={arrowX} cy={arrowY} r="2.5" fill="#ffb830" opacity="0.7"/>
-                  );
-                })()}
+  const t = 0.8;
+  const arrowX = fx * (1 - t) * (1 - t) + 2 * mx * (1 - t) * t + tx * t * t;
+  const arrowY = fy * (1 - t) * (1 - t) + 2 * my * (1 - t) * t + ty * t * t;
+  return (
+    <circle cx={arrowX} cy={arrowY} r="2.5" fill="#ffb830" opacity="0.7" />
+  );
+})()}
               </g>
             );
           })}
