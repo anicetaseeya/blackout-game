@@ -701,25 +701,32 @@ function SocialsScreen({ onHome, pageKey }: { onHome: () => void; pageKey: numbe
           </a>
 
           <div className="socials-grid">
-            <a className="social-card" href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <div className="social-card-icon sc-x">𝕏</div>
-              <p className="social-card-platform">X / Twitter</p>
-              <p className="social-card-handle">@EUSingleMarket</p>
-              <span className="social-card-follow">Follow →</span>
-            </a>
-            <a className="social-card" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-              <div className="social-card-icon sc-li">in</div>
-              <p className="social-card-platform">LinkedIn</p>
-              <p className="social-card-handle">EU Single Market</p>
-              <span className="social-card-follow">Follow →</span>
-            </a>
-            <a className="social-card" href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <div className="social-card-icon sc-ig">◎</div>
-              <p className="social-card-platform">Instagram</p>
-              <p className="social-card-handle">@euenergymarket</p>
-              <span className="social-card-follow">Follow →</span>
-            </a>
-          </div>
+
+  <a
+    className="social-card"
+    href="https://eu-singlemarket-energy-campaign.lovable.app/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <div className="social-card-icon" style={{ background: "var(--navy)" }}>⚡</div>
+    <p className="social-card-platform">Campaign Website</p>
+    <p className="social-card-handle">EU Energy Single Market</p>
+    <span className="social-card-follow">Visit →</span>
+  </a>
+
+  <a
+    className="social-card"
+    href="https://www.instagram.com/europeanunionpower/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <div className="social-card-icon sc-ig">◎</div>
+    <p className="social-card-platform">Instagram</p>
+    <p className="social-card-handle">@europeanunionpower</p>
+    <span className="social-card-follow">Follow →</span>
+  </a>
+
+</div>
 
           <button className="btn btn-navy socials-back-btn" onClick={onHome}>
             Help another character →
